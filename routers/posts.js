@@ -1,9 +1,41 @@
 const express = require("express");
 const router = express.Router();
-const recipesList = require("../data/food");
+const recipesList = require("../data/foods");
+
 
 // index
 router.get('/', (req, res) => {
-    res.json();
+    res.json(recipesList);
 });
 
+// show
+router.get('/:id', (req, res) => {
+    const recipeId = req.params.id;
+    const specRecipe = recipesList.filter((curRecipe) => curRecipe.id.includes(recipeId));
+    res.json(specRecipe);
+});
+
+// create
+router.post('/', (req, res) => {
+    res.json('creiamo un nuovo post');
+});
+
+// Update
+router.put('/:id', (req, res) => {
+    const recipeId = req.params.id;
+    res.json('modifichiamo i dati del post ' + recipeId);
+});
+
+// modify
+router.patch('/:id', (req, res) => {
+    const recipeId = req.params.id;
+    res.json('modifichiamo gli specifici dati del post ' + recipeId);
+});
+
+// destroy
+router.delete('/:id', (req, res) => {
+    const recipeId = req.params.id;
+    res.json('eliminiamo post ' + recipeId);
+});
+
+module.exports = router;

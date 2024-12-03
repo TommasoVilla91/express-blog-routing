@@ -1,6 +1,11 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+const recipesRouters = require("./routers/posts");
+
+app.use(express.static("public"));
+app.use("/foods", recipesRouters);
+
 
 app.get('/', (req, res) => {
     res.send('Hello world');
