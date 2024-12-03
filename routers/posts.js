@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 // show
 router.get('/:id', (req, res) => {
     const recipeId = req.params.id;
-    const specRecipe = recipesList.filter((curRecipe) => curRecipe.id.includes(recipeId));
+    const specRecipe = recipesList.find(curRecipe => curRecipe.id === recipeId);    
     res.json(specRecipe);
 });
 
