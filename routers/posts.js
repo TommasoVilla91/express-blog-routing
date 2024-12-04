@@ -11,8 +11,17 @@ router.get('/', (req, res) => {
 // show
 router.get('/:id', (req, res) => {
     const recipeId = parseInt(req.params.id);
-    const specRecipe = recipesList.find(curRecipe => curRecipe.id === recipeId);    
-    res.json(specRecipe);
+    const specRecipe = recipesList.find(curRecipe => curRecipe.id === recipeId);
+    if(specRecipe === undefined) {
+        res.statusCode = 404;
+        res.json({
+            error: true,
+            message: "Ricetta non trovata",
+        });
+    } else {
+        res.json(specRecipe);
+    };
+    
 });
 
 // create
